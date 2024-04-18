@@ -9,86 +9,94 @@ To segment the image using global thresholding, adaptive thresholding and Otsu's
 ## Algorithm
 
 ### Step1:
-<br>
+Load the necessary packages.
 
 ### Step2:
-<br>
+Read the Image and convert to grayscale.
 
 ### Step3:
-<br>
+Use Global thresholding to segment the image.
 
 ### Step4:
-<br>
+Use Adaptive thresholding to segment the image.
 
 ### Step5:
-<br>
+Use Otsu's method to segment the image and display the results.
 
-## Program
-
-```python
-# Load the necessary packages
-
+## PROGRAM
+### Developed By : PULI NAGA NEERAJ
+### Register Number : 212223240130
 
 
-
-
-# Read the Image and convert to grayscale
-
-
-
-
-# Use Global thresholding to segment the image
-
-
-
-
-# Use Adaptive thresholding to segment the image
-
-
-
-
-# Use Otsu's method to segment the image 
-
-
-
-
-# Display the results
-
-
-
-
-
+### Load the necessary packages
 ```
-## Output
+import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+```
+
+### Read the Image and convert to grayscale
+```
+image = cv2.imread('fox.jpg',1)
+image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+image_gray = cv2.imread('fox.jpg',0)
+```
+### Use Global thresholding to segment the image
+```
+ret,thresh_img1=cv2.threshold(image_gray,86,255,cv2.THRESH_BINARY)
+ret,thresh_img2=cv2.threshold(image_gray,86,255,cv2.THRESH_BINARY_INV)
+ret,thresh_img3=cv2.threshold(image_gray,86,255,cv2.THRESH_TOZERO)
+ret,thresh_img4=cv2.threshold(image_gray,86,255,cv2.THRESH_TOZERO_INV)
+ret,thresh_img5=cv2.threshold(image_gray,100,255,cv2.THRESH_TRUNC)
+```
+### Use Adaptive thresholding to segment the image
+```
+thresh_img7=cv2.adaptiveThreshold(image_gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,11,2)
+thresh_img8=cv2.adaptiveThreshold(image_gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
+```
+### Use Otsu's method to segment the image 
+```
+ret,thresh_img6=cv2.threshold(image_gray,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+```
+### Display the results
+```
+titles=["Gray Image","Threshold Image (Binary)","Threshold Image (Binary Inverse)","Threshold Image (To Zero)"
+       ,"Threshold Image (To Zero-Inverse)","Threshold Image (Truncate)","Otsu","Adaptive Threshold (Mean)","Adaptive Threshold (Gaussian)"]
+images=[image_gray,thresh_img1,thresh_img2,thresh_img3,thresh_img4,thresh_img5,thresh_img6,thresh_img7,thresh_img8]
+for i in range(0,9):
+    plt.figure(figsize=(10,10))
+    plt.subplot(1,2,1)
+    plt.title("Original Image")
+    plt.imshow(image)
+    plt.axis("off")
+    plt.subplot(1,2,2)
+    plt.title(titles[i])
+    plt.imshow(cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB))
+    plt.axis("off")
+    plt.show()
+```
+## OUTPUT
 
 ### Original Image
-<br>
-<br>
-<br>
-<br>
-<br>
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/b91baad7-4cc6-428a-a71f-e595b4d42a4e)
 
 ### Global Thresholding
-<br>
-<br>
-<br>
-<br>
-<br>
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/738fb17a-f292-4150-88d9-d0004609ced2)
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/28be667a-6638-43c6-b13c-ce817ded268a)
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/b081d801-c90e-40f7-95e3-408b55758b0d)
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/1e2bc2e5-04a2-4611-b1ed-4bb7a06c6382)
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/0c4e48b4-3219-4435-bf29-e2a4f1e2ffe0)
+
 
 ### Adaptive Thresholding
-<br>
-<br>
-<br>
-<br>
-<br>
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/8c4836fd-7c20-4cf8-acc1-add53cbfbc18)
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/764d0b4c-c93b-4017-a8b0-140780c3e1ad)
+
+
 
 ### Optimum Global Thesholding using Otsu's Method
-<br>
-<br>
-<br>
-<br>
-<br>
+![image](https://github.com/PuliNagaNeeraj/Thresholdingg/assets/138849173/4951510f-5671-48ea-ac0a-ab07abcfcef6)
 
 
 ## Result
-Thus the images are segmented using global thresholding, adaptive thresholding and optimum global thresholding using python and OpenCV.
+Thus the images are segmented using global thresholding, adaptive thresholding and optimum global thresholding using python and OpenCV.
